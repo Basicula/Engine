@@ -148,6 +148,9 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="src\graphics\buffer\buffer.cpp" />
+    <ClCompile Include="src\graphics\buffer\indexbuffer.cpp" />
+    <ClCompile Include="src\graphics\buffer\vertexarray.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\graphics\window.cpp" />
     <ClCompile Include="src\math\mat4.cpp" />
@@ -156,6 +159,9 @@
     <ClCompile Include="src\math\vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\buffer\buffer.h" />
+    <ClInclude Include="src\graphics\buffer\indexbuffer.h" />
+    <ClInclude Include="src\graphics\buffer\vertexarray.h" />
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\graphics\window.h" />
     <ClInclude Include="src\math\funcs.h" />
