@@ -1,0 +1,4 @@
+﻿  Source.cpp
+d:\programs\c++\engine\engine\src\math\funcs.h(11): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\programs\c++\engine\engine\src\math\funcs.h(16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Engine.vcxproj -> D:\Programs\C++\Engine\Debug\Engine.exe
