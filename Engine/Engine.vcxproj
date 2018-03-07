@@ -151,18 +151,23 @@
     <ClCompile Include="src\graphics\buffer\buffer.cpp" />
     <ClCompile Include="src\graphics\buffer\indexbuffer.cpp" />
     <ClCompile Include="src\graphics\buffer\vertexarray.cpp" />
+    <ClCompile Include="src\graphics\simple2drenderer.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\graphics\window.cpp" />
     <ClCompile Include="src\math\mat4.cpp" />
     <ClCompile Include="src\math\vector2.cpp" />
     <ClCompile Include="src\math\vector3.cpp" />
     <ClCompile Include="src\math\vector4.cpp" />
+    <ClCompile Include="src\_TestGraph\testfuncs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\buffer\buffer.h" />
     <ClInclude Include="src\graphics\buffer\indexbuffer.h" />
     <ClInclude Include="src\graphics\buffer\vertexarray.h" />
+    <ClInclude Include="src\graphics\renderable2d.h" />
+    <ClInclude Include="src\graphics\renderer2d.h" />
     <ClInclude Include="src\graphics\shader.h" />
+    <ClInclude Include="src\graphics\simple2drenderer.h" />
     <ClInclude Include="src\graphics\window.h" />
     <ClInclude Include="src\math\funcs.h" />
     <ClInclude Include="src\math\mat4.h" />
@@ -171,6 +176,7 @@
     <ClInclude Include="src\math\vector3.h" />
     <ClInclude Include="src\math\vector4.h" />
     <ClInclude Include="src\utils\fileutils.h" />
+    <ClInclude Include="src\_TestGraph\testfuncs.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\basic.frag" />

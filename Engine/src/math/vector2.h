@@ -16,20 +16,24 @@ namespace Engine {
 			Vector2& substract(const Vector2& other);
 			Vector2& divide(const Vector2& other);
 
-			friend Vector2 operator-(Vector2 left, const Vector2& rigth);
-			friend Vector2 operator*(Vector2 left, const Vector2& rigth);
-			friend Vector2 operator/(Vector2 left, const Vector2& rigth);
-			friend Vector2 operator+(Vector2 left, const Vector2& rigth);
+			friend Vector2 operator-(Vector2 left, const Vector2& right);
+			friend Vector2 operator*(Vector2 left, const Vector2& right);
+			friend Vector2 operator/(Vector2 left, const Vector2& right);
+			friend Vector2 operator+(Vector2 left, const Vector2& right);
 
-			Vector2& operator+=(const Vector2& rigth);
-			Vector2& operator-=(const Vector2& rigth);
-			Vector2& operator*=(const Vector2& rigth);
-			Vector2& operator/=(const Vector2& rigth);
+			Vector2& operator+=(const Vector2& right);
+			Vector2& operator-=(const Vector2& right);
+			Vector2& operator*=(const Vector2& right);
+			Vector2& operator/=(const Vector2& right);
 
 			bool operator==(const Vector2& other);
 			bool operator!=(const Vector2& other);
+			bool operator<(const Vector2& other);
+			bool operator>(const Vector2& other);
 
-			friend std::ostream& operator<<(std::ostream& stream,const Vector2& vector);
+			float dist(const Vector2& other) const;
+
+			friend std::ostream& operator<<(std::ostream& stream, const Vector2& vector);
 		};
 
 

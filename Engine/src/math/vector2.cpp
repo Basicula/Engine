@@ -95,6 +95,25 @@ namespace Engine {
 			return !(*this == other);
 		}
 
+		bool Vector2::operator<(const Vector2& other)
+		{
+			if (x < other.x) return true;
+			else if (x > other.x) return false;
+			else if (y < other.y) return true;
+			else if (y > other.y) return false;
+			else return false;
+		}
+
+		bool Vector2::operator>(const Vector2& other)
+		{
+			return !(*this < other);
+		}
+
+		float Vector2::dist(const Vector2& other) const
+		{
+			return sqrt(pow(x - other.x, 2) + pow(y - other.y, 2));
+		}
+
 		std::ostream& operator<<(std::ostream& stream, const Vector2& vector)
 		{
 			stream <<"("<< vector.x << ", " << vector.y<<")";
