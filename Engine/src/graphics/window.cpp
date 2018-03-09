@@ -12,7 +12,7 @@ namespace Engine {
 		{
 			m_Title = name;
 			m_Width = width;
-			m_Heidth = heidth;
+			m_Heidth = heidth;	
 			if (!init())
 				glfwTerminate();
 
@@ -47,6 +47,7 @@ namespace Engine {
 			glfwSetKeyCallback(m_Window, key_callback);
 			glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 			glfwSetCursorPosCallback(m_Window, cursor_position_callback);
+			glfwSwapInterval(0.0);
 
 			if (glewInit() != GLEW_OK) {
 				printf("Couldn't initialized GLEW");

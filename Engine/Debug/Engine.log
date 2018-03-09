@@ -1,12 +1,9 @@
 ﻿  Source.cpp
 d:\programs\c++\github\engine\engine\src\math\funcs.h(11): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 d:\programs\c++\github\engine\engine\src\math\funcs.h(16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-d:\programs\c++\github\engine\engine\source.cpp(61): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-d:\programs\c++\github\engine\engine\source.cpp(66): warning C4018: '<': signed/unsigned mismatch
-d:\programs\c++\github\engine\engine\source.cpp(72): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-d:\programs\c++\github\engine\engine\source.cpp(79): warning C4018: '<': signed/unsigned mismatch
-d:\programs\c++\github\engine\engine\source.cpp(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\programs\c++\github\engine\engine\source.cpp(86): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-d:\programs\c++\github\engine\engine\source.cpp(93): warning C4018: '<': signed/unsigned mismatch
-d:\programs\c++\github\engine\engine\source.cpp(107): warning C4018: '<': signed/unsigned mismatch
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\minwindef.h(130): warning C4005: 'APIENTRY': macro redefinition
+  d:\programs\c++\engine\dependencies\glfw\include\glfw\glfw3.h(98): note: see previous definition of 'APIENTRY'
+d:\programs\c++\github\engine\engine\source.cpp(55): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\programs\c++\github\engine\engine\source.cpp(82): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+d:\programs\c++\github\engine\engine\source.cpp(152): warning C4018: '<': signed/unsigned mismatch
   Engine.vcxproj -> D:\Programs\C++\GitHub\Engine\Debug\Engine.exe

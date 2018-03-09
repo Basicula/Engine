@@ -25,7 +25,7 @@ namespace Engine {
 
 		mat4& mat4::multiply(const mat4& other)
 		{
-			mat4 result;
+			float result[16];
 			for (int i = 0; i < 4; i++)
 			{
 				for (int j = 0; j < 4; j++)
@@ -33,12 +33,13 @@ namespace Engine {
 					float sum = 0.0f;
 					for (int k = 0; k < 4; k++)
 					{
-						sum += elements[i + k * 4] * other.elements[k + j * 4];
+						sum += elements[j + k * 4] * other.elements[k + i * 4];
 					}
-					result.elements[i + j * 4] = sum;
+					result[j + i * 4] = sum;
 				}
 			}
-			return result;
+			memcpy(elements, result, 16 * sizeof(float));
+			return *this;
 		}
 
 		mat4 operator*(mat4 left, const mat4& rigth)

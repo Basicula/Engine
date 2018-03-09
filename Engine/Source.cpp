@@ -13,6 +13,15 @@
 
 #include "src\graphics\renderer2d.h"
 #include "src\graphics\simple2drenderer.h"
+#include "src\graphics\batchrenderer2d.h"
+
+#include "src\graphics\static_sprite.h"
+#include "src\graphics\sprite.h"
+
+#include "src\utils\timer.h"
+#include <time.h>
+
+#include "src\graphics\layers\tilelayer.h"
 
 int main() {
 	using namespace Engine;
@@ -20,35 +29,20 @@ int main() {
 	using namespace Math;
 
 	Window window("Test", 800, 600);
-#if 0
-	GLfloat vertices[] =
-	{
-		4, 4, 0.0f,
-		10, 4, 0.0f,
-		4, 10, 0.0f
-	};
-
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(0);
-#else
-	
-#endif
-
 	mat4 ortho = mat4::orthographic(0, 16, 0, 9, -1, 1);
 
-	Shader shader("src/shaders/basic.vert", "src/shaders/basic.frag");
+	Shader* s = new Shader("src/shaders/basic.vert", "src/shaders/basic.frag");
+	Shader& shader = *s;
 	shader.enable();
-	shader.setUniformMat4("pr_matrix", ortho);
-
-	Renderable2D sprite(Vector3(3, 3, 0), Vector2(4, 4), Vector4(1, 0, 0, 1), shader);
-	Simple2DRenderer renderer;
-
 	shader.setUniform2f("light_pos", Vector2(4, 4));
-	shader.setUniform4f("colour", Vector4(1, 0, 0, 1));
+
+	TileLayer layer(&shader);
+	layer.add(new Sprite(0, 0, 4, 4, Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
+
+	Timer time;
+	float t = 0;
+	unsigned int frames = 0;
+
 
 	std::vector<Vector2> dots;
 	while (!window.closed())
@@ -56,10 +50,11 @@ int main() {
 		window.clear();
 		double x, y;
 		window.getMousePosition(x, y);
-		x = x * 16.0 / 800;
-		y = 9 - y * 9.0 / 600;
+		x = x * 32.0f / 800.0f - 16.0f;
+		y = 9.0f - y * 18.0f / 600.0f;
+		shader.enable();
 		shader.setUniform2f("light_pos", Vector2(x, y));
-#if 1
+#if 0
 		if (window.isMouseButtonPressed(GLFW_MOUSE_BUTTON_1))
 		{
 			bool ok = true;
@@ -70,12 +65,14 @@ int main() {
 			if (ok)
 			{
 				dots.push_back(Vector2(x, y));
+				std::sort(dots.begin(), dots.end());
 			}
 
 		}
 
 		if (dots.size() > 1)
 		{
+			shader.setUniform4f("colour", Vector4(1, 0, 0, 1));
 			for (int i = 0; i < dots.size(); i++)
 			{
 				glBegin(GL_LINE_LOOP);
@@ -87,6 +84,7 @@ int main() {
 				}
 				glEnd();
 			}
+
 			shader.setUniform4f("colour", Vector4(1, 0, 0, 1));
 			std::vector<Vector2> graph = Graph::lineInterpolation(dots);
 			glBegin(GL_LINE_STRIP);
@@ -96,26 +94,45 @@ int main() {
 			}
 			glEnd();
 
-			std::vector<Vector2> newdots =
-			{
-				Vector2(1,1),
-				Vector2(5,5)
-			};
-			graph = Graph::cubeInterpolation(dots);
+			/*graph = Graph::polyInterpolation(dots);
 			shader.setUniform4f("colour", Vector4(0, 1, 0, 1));
 			glBegin(GL_LINE_STRIP);
 			for (int i = 0; i < graph.size(); i++)
 			{
 				glVertex2f(graph[i].x, graph[i].y);
 			}
+			glEnd();*/
+
+			graph = Graph::cubeSplainInterpolation(dots);
+			shader.setUniform4f("colour", Vector4(0, 0, 1, 1));
+			glBegin(GL_LINE_STRIP);
+			for (int i = 0; i < graph.size(); i++)
+			{
+				glVertex2f(graph[i].x, graph[i].y);
+			}
 			glEnd();
-	}
+
+			graph = Graph::interpolationLagrange(dots);
+			shader.setUniform4f("colour", Vector4(1, 1, 0, 1));
+			glBegin(GL_LINE_STRIP);
+			for (int i = 0; i < graph.size(); i++)
+			{
+				glVertex2f(graph[i].x, graph[i].y);
+			}
+			glEnd();
+		}
 #else
-		renderer.submit(&sprite);
-		renderer.flush();
+		layer.render();
 #endif
 		window.update();
-}
+		frames++;
+		if (time.elapsed() - t > 1.0f)
+		{
+			t += 1.0f;
+			printf("%d\n", frames);
+			frames = 0;
+		}
+	}
 
 	return 0;
 }
