@@ -33,6 +33,11 @@ namespace Engine {
 			friend mat4 operator*(mat4 left, const mat4& rigth);
 			mat4& operator*=(const mat4& other);
 
+			Vector3 multiply(const Vector3& other) const;
+			friend Vector3 operator*(const mat4& left, const Vector3& rigth);
+			Vector4 multiply(const Vector4& other) const;
+			friend Vector4 operator*(const mat4& left, const Vector4& rigth);
+
 			friend std::ostream& operator<<(std::ostream& stream, const mat4& mat);
 
 		};
